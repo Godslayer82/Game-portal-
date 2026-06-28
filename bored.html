@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Favicon & Color Shift</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 1.5s ease-in-out; 
+            overflow: hidden;
+            background-color: black;
+        }
+
+        .spinning-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            animation: spin 4s linear infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="favicon.png" alt="Spinning Favicon" class="spinning-image">
+
+    <script>
+        const colors = [
+            '#000000', 
+            '#1a001a', 
+            '#330033',
+            '#4d004d',
+            '#120114', 
+            '#0d001a' 
+        ];
+
+        function changeBackground() {
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            document.body.style.backgroundColor = colors[randomIndex];
+        }
+
+        changeBackground();
+
+        setInterval(changeBackground, 2500);
+    </script>
+</body>
+</html>
